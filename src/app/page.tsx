@@ -20,11 +20,9 @@ export default function Home() {
     setFormVal((prev) => ({ ...prev, [name]: val }));
   };
 
-  console.log(formVal);
-
   return (
-    <div className="flex items-center justify-center h-screen">
-      <div className="bg-white/5 max-w-lg w-full p-4 rounded-md">
+    <div className="flex items-center justify-center min-h-screen p-4">
+      <div className="bg-white/5 max-w-[320px] sm:max-w-lg w-full p-4 rounded-md overflow-auto">
         <div>
           <Banner
             name={formVal.name}
@@ -32,7 +30,7 @@ export default function Home() {
             image={formVal.image}
           />
         </div>
-        <span className="block w-11/12 h-[2px] rounded-sm bg-white/5 my-8 mx-auto" />
+        <span className="block w-11/12 h-[2px] rounded-sm bg-white/5 my-4 sm:my-8 mx-auto" />
         <div>
           <Form onChange={handleChange} />
         </div>

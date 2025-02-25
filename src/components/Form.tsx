@@ -44,7 +44,7 @@ const Form: FC<FormProps> = ({ onChange }) => {
 
   return (
     <div>
-      <div className="flex gap-4 mb-4">
+      <div className="flex gap-3 sm:gap-4 mb-4 flex-wrap sm:flex-nowrap">
         <TextInput
           placeholder="ex: Sahariar"
           label="Name"

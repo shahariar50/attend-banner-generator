@@ -24,12 +24,12 @@ const ImageUploader: FC<ImageUploader> = ({
 
   return (
     <Field className={clsx(className)}>
-      <Label className="text-sm/6 font-medium text-white mb-1 block">
+      <Label className="text-xs sm:text-sm font-medium text-white mb-1 block">
         {label}
       </Label>
       <Input
         type="file"
-        className="block w-full rounded-lg border-none bg-white/5 p-4"
+        className="block w-full rounded-lg border-none bg-white/5 p-2 sm:p-4 text-sm"
         onChange={handleFileChange}
         {...props}
       />
