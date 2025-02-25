@@ -8,7 +8,7 @@ type BannerProps = { name: string; batch: string; image: string };
 const Banner: FC<BannerProps> = ({ name, batch, image }) => {
   return (
     <div className="w-full">
-      <div className="py-[50%] relative transform">
+      <div className="py-[50%] relative transform" id="banner">
         <div className="absolute top-0 left-0 h-full w-full overflow-hidden rounded-xl">
           <Image src="/frame.jpg" fill alt="frame" />
           <div className="absolute h-[259px] bottom-0 w-full px-[10px] pb-[10px] flex gap-1">

@@ -1,3 +1,4 @@
+import * as htmlToImage from "html-to-image";
 import { FC } from "react";
 import Button from "./Button";
 import ImageUploader from "./ImageUploader";
@@ -8,6 +9,39 @@ type FormProps = {
 };
 
 const Form: FC<FormProps> = ({ onChange }) => {
+  const handleImageDownload = () => {
+    const banner = document.getElementById("banner");
+
+    if (banner) {
+      const originalWidth = banner.offsetWidth;
+      const originalHeight = banner.offsetHeight;
+
+      const newWidth = originalWidth * (1200 / originalWidth);
+      const newHeight = originalHeight * (1200 / originalHeight);
+
+      setTimeout(() => {
+        htmlToImage
+          .toBlob(banner, {
+            width: newWidth,
+            height: newHeight,
+            style: {
+              transform: `scale(${1200 / originalWidth})`,
+              transformOrigin: "top left",
+            },
+          })
+          .then((blob) => {
+            const link = document.createElement("a");
+            const url = window.URL.createObjectURL(blob as Blob);
+            link.href = url;
+            link.download = "export_qs.png";
+            link.click();
+            window.URL.revokeObjectURL(url);
+          });
+        banner.style.scale = "1";
+      }, 200);
+    }
+  };
+
   return (
     <div>
       <div className="flex gap-4 mb-4">
@@ -31,7 +65,7 @@ const Form: FC<FormProps> = ({ onChange }) => {
           onChange={(url) => onChange("image", url)}
         />
       </div>
-      <Button>Download</Button>
+      <Button onClick={handleImageDownload}>Download</Button>
     </div>
   );
 };
