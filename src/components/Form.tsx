@@ -60,7 +60,7 @@ const Form: FC<FormProps> = ({ onChange }) => {
       </div>
       <div>
         <ImageUploader
-          label="Profile Image (Crop to squire size before upload)"
+          label="Profile Image (Crop the image to squire size before upload)"
           className="mb-4"
           onChange={(url) => onChange("image", url)}
         />

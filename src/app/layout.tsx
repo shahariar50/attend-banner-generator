@@ -31,6 +31,22 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        <footer className="px-8 py-4 text-center">
+          &copy; Develope by{" "}
+          <a
+            className="text-[#ca238c]"
+            href="https://www.facebook.com/abdullahalshahariar1"
+          >
+            Abdullah Al Sahariar
+          </a>
+          , Banner design by{" "}
+          <a
+            className="text-[#ca238c]"
+            href="https://www.facebook.com/abuahamad01"
+          >
+            Abu Ahamad
+          </a>
+        </footer>
       </body>
     </html>
   );

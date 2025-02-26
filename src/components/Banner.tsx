@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import clsx from "clsx";
-import Image from "next/image";
 import { FC } from "react";
 
 type BannerProps = { name: string; batch: string; image: string };
@@ -10,33 +9,37 @@ const Banner: FC<BannerProps> = ({ name, batch, image }) => {
     <div className="w-full">
       <div className="py-[50%] relative transform" id="banner">
         <div className="absolute top-0 left-0 h-full w-full overflow-hidden rounded-xl">
-          <Image src="/frame.jpg" fill alt="frame" />
-          <div className="absolute h-[155px] sm:h-[259px] bottom-0 w-full px-[6px] sm:px-[10px] pb-[6px] sm:pb-[10px] flex gap-1">
-            <div className="w-1/2 bg-[#080808] rounded-lg h-full shrink-0 overflow-hidden">
-              <img
-                className={clsx(
-                  "w-full object-cover",
-                  image ? "h-full" : "scale-[.90]"
-                )}
-                src={image || "/user-placeholder.webp"}
-                alt="user"
-              />
+          <img src="/frame.jpg" alt="frame" />
+          <div className="absolute h-[41.9%] top-[54.6%] w-full px-[5.5%] flex">
+            <div className="w-1/2 h-full pr-[4%]">
+              <div className="bg-white rounded-lg h-full w-full overflow-hidden bg-gradient-to-br from-[#ca238c] to-[#721ac6] p-0.5">
+                <div className="bg-white rounded-md h-full w-full overflow-hidden">
+                  <img
+                    className={clsx(
+                      "w-full object-cover",
+                      image ? "h-full" : "scale-[.90]"
+                    )}
+                    src={image || "/user-placeholder.webp"}
+                    alt="user"
+                  />
+                </div>
+              </div>
             </div>
-            <div className="rounded-lg h-full p-4 sm:p-8 flex flex-col justify-between w-1/2 shrink-0 bg-[#080808]">
+            <div className="rounded-lg h-full pl-[3%] flex w-1/2 shrink-0 relative">
               <div>
-                <h2 className="text-[24px] sm:text-[36px] font-bebas leading-6 sm:leading-9">
-                  {name ? name : "Your name"}
+                <h2 className="text-[24px] text-white sm:text-[36px] font-bebas leading-6 sm:leading-9">
+                  {name ? name : "আপনার নাম"}
                 </h2>
                 {batch && (
-                  <p className="text-[20] sm:text-[24px] text-[#FA1E64] font-bebas">
-                    Batch: {batch}
+                  <p className="text-[20] sm:text-[24px] text-[#ca238c] font-bebas">
+                    ব্যাচ: {batch}
                   </p>
                 )}
               </div>
-              <div>
-                <h6 className="text-xs sm:text-sm">See you</h6>
-                <p className="m-0 text-[#FA1E64] text-[10px] sm:text-xs">
-                  At the vanue
+              <div className="flex justify-end absolute bottom-[1%] right-0">
+                <p className="text-white text-[10px] sm:text-xs">
+                  {`"যেথায় থাকুক যে-যেখানে,`}
+                  <br /> {`বাঁধন আছে প্রাণে-প্রাণে"`}
                 </p>
               </div>
             </div>
