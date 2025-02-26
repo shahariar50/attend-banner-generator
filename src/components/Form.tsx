@@ -1,6 +1,6 @@
+import axios from "axios";
 import * as htmlToImage from "html-to-image";
-import { FC, useEffect } from "react";
-import TagManager from "react-gtm-module";
+import { FC, useEffect, useState } from "react";
 import Button from "./Button";
 import ImageUploader from "./ImageUploader";
 import TextInput from "./TextInput";
@@ -10,12 +10,17 @@ type FormProps = {
 };
 
 const Form: FC<FormProps> = ({ onChange }) => {
-  const tagManagerArgs = {
-    gtmId: "GTM-M6ZZ3R8T",
-  };
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    TagManager.initialize(tagManagerArgs);
+    axios
+      .get("/api/data")
+      .then((res) => {
+        setCount(res.data.value);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   const handleImageDownload = () => {
@@ -49,13 +54,14 @@ const Form: FC<FormProps> = ({ onChange }) => {
         banner.style.scale = "1";
       }, 200);
     }
-    TagManager.dataLayer({
-      dataLayer: {
-        event: "button_click",
-        button_id: "track-button",
-        button_text: "Download",
-      },
-    });
+    axios
+      .post("/api/data")
+      .then((res) => {
+        setCount(res.data.value);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -81,7 +87,10 @@ const Form: FC<FormProps> = ({ onChange }) => {
           onChange={(url) => onChange("image", url)}
         />
       </div>
-      <Button onClick={handleImageDownload}>Download</Button>
+      <div className="flex justify-between items-center">
+        <Button onClick={handleImageDownload}>Download</Button>
+        {count > 0 && <span>Total Downloaded: {count}</span>}
+      </div>
     </div>
   );
 };
