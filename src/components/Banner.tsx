@@ -27,11 +27,11 @@ const Banner: FC<BannerProps> = ({ name, batch, image }) => {
             </div>
             <div className="rounded-lg h-full pl-[3%] flex w-1/2 shrink-0 relative">
               <div>
-                <h2 className="text-[20px] sm:text-[36px] text-white font-bebas leading-7 sm:leading-9">
+                <h2 className="text-[20px] sm:text-[32px] text-white font-bebas leading-7 sm:leading-[36px]">
                   {name ? name : "আপনার নাম"}
                 </h2>
                 {batch && (
-                  <p className="text-[16] sm:text-[24px] text-[#ca238c] font-bebas">
+                  <p className="text-[14px] sm:text-[20px] text-[#ca238c] font-bebas">
                     ব্যাচ: {batch}
                   </p>
                 )}
