@@ -47,7 +47,7 @@ const Form: FC<FormProps> = ({ onChange }) => {
             const link = document.createElement("a");
             const url = window.URL.createObjectURL(blob as Blob);
             link.href = url;
-            link.download = "export_qs.png";
+            link.download = "banner.png";
             link.click();
             window.URL.revokeObjectURL(url);
           });
