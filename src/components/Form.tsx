@@ -1,5 +1,6 @@
 import * as htmlToImage from "html-to-image";
-import { FC } from "react";
+import { FC, useEffect } from "react";
+import TagManager from "react-gtm-module";
 import Button from "./Button";
 import ImageUploader from "./ImageUploader";
 import TextInput from "./TextInput";
@@ -9,6 +10,14 @@ type FormProps = {
 };
 
 const Form: FC<FormProps> = ({ onChange }) => {
+  const tagManagerArgs = {
+    gtmId: "GTM-M6ZZ3R8T",
+  };
+
+  useEffect(() => {
+    TagManager.initialize(tagManagerArgs);
+  }, []);
+
   const handleImageDownload = () => {
     const banner = document.getElementById("banner");
 
@@ -40,6 +49,13 @@ const Form: FC<FormProps> = ({ onChange }) => {
         banner.style.scale = "1";
       }, 200);
     }
+    TagManager.dataLayer({
+      dataLayer: {
+        event: "button_click",
+        button_id: "track-button",
+        button_text: "Download",
+      },
+    });
   };
 
   return (
