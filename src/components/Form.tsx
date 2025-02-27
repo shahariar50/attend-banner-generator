@@ -12,6 +12,7 @@ type FormProps = {
 
 const Form: FC<FormProps> = ({ onChange, data }) => {
   const [count, setCount] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     axios
@@ -25,6 +26,7 @@ const Form: FC<FormProps> = ({ onChange, data }) => {
   }, []);
 
   const handleImageDownload = () => {
+    setLoading(true);
     const banner = document.getElementById("banner");
 
     if (banner) {
@@ -68,6 +70,7 @@ const Form: FC<FormProps> = ({ onChange, data }) => {
       .post("/api/submissionData", data)
       .then((res) => {
         setCount(res.data.value);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -98,7 +101,9 @@ const Form: FC<FormProps> = ({ onChange, data }) => {
         />
       </div>
       <div className="flex justify-between items-center">
-        <Button onClick={handleImageDownload}>Download</Button>
+        <Button onClick={handleImageDownload} disabled={loading}>
+          Download
+        </Button>
         {count > 0 && <span>Total Downloaded: {count}</span>}
       </div>
     </div>
