@@ -6,6 +6,15 @@ export const POST = async (req: NextRequest) => {
   await connectionToDatabase();
   const { name, batch } = await req.json();
 
+  const existingRecord = await SubmissionData.findOne({ name, batch });
+
+  if (existingRecord) {
+    return NextResponse.json(
+      { message: "Record already exists!" },
+      { status: 400 }
+    );
+  }
+
   const formData = new SubmissionData({ name, batch });
   await formData.save();
 
