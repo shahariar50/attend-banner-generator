@@ -42,7 +42,7 @@ const Form: FC<FormProps> = ({ onChange, data, onSubmit, loading, count }) => {
         <Button onClick={onSubmit} disabled={loading}>
           Download
         </Button>
-        {count > 0 && <span>Total Downloaded: {count}</span>}
+        {count > 0 && <span>Downloaded: {count} persons</span>}
       </div>
     </div>
   );

@@ -23,7 +23,7 @@ export default function Home() {
 
   useEffect(() => {
     axios
-      .get("/api/data")
+      .get("/api/submissionData")
       .then((res) => {
         setCount(res.data.value);
       })
@@ -68,14 +68,6 @@ export default function Home() {
     }
 
     if (formVal?.name || formVal?.batch) {
-      axios
-        .post("/api/data")
-        .then((res) => {
-          setCount(res.data.value);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
       axios
         .post("/api/submissionData", formVal)
         .then((res) => {

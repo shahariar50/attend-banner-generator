@@ -2,6 +2,12 @@ import connectionToDatabase from "@/be/connectDb";
 import SubmissionData from "@/be/submissionData";
 import { NextRequest, NextResponse } from "next/server";
 
+export async function GET() {
+  await connectionToDatabase();
+  const count = await SubmissionData.findOne().countDocuments();
+  return NextResponse.json({ value: count });
+}
+
 export const POST = async (req: NextRequest) => {
   await connectionToDatabase();
   const { name, batch } = await req.json();
@@ -24,5 +30,7 @@ export const POST = async (req: NextRequest) => {
   });
   await formData.save();
 
-  return NextResponse.json({ message: "Form data saved successfully" });
+  const count = await SubmissionData.findOne().countDocuments();
+
+  return NextResponse.json({ value: count });
 };
