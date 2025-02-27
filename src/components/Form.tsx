@@ -57,16 +57,16 @@ const Form: FC<FormProps> = ({ onChange, data }) => {
         banner.style.scale = "1";
       }, 200);
     }
-    axios
-      .post("/api/data")
-      .then((res) => {
-        setCount(res.data.value);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
 
     if (data?.name || data?.batch) {
+      axios
+        .post("/api/data")
+        .then((res) => {
+          setCount(res.data.value);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
       axios
         .post("/api/submissionData", data)
         .then((res) => {
