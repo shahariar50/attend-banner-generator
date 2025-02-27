@@ -66,15 +66,19 @@ const Form: FC<FormProps> = ({ onChange, data }) => {
         console.log(err);
       });
 
-    axios
-      .post("/api/submissionData", data)
-      .then((res) => {
-        setCount(res.data.value);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (data?.name || data?.batch) {
+      axios
+        .post("/api/submissionData", data)
+        .then((res) => {
+          setCount(res.data.value);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      setLoading(false);
+    }
   };
 
   return (
