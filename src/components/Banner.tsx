@@ -2,7 +2,7 @@
 import clsx from "clsx";
 import { FC } from "react";
 
-type BannerProps = { name: string; batch: string; image: string };
+type BannerProps = { name: string; batch: string; image: string | Blob };
 
 const Banner: FC<BannerProps> = ({ name, batch, image }) => {
   return (
@@ -19,7 +19,7 @@ const Banner: FC<BannerProps> = ({ name, batch, image }) => {
                       "w-full object-cover",
                       image ? "h-full" : "scale-[.90]"
                     )}
-                    src={image || "/user-placeholder.webp"}
+                    src={(image as string) || "/user-placeholder.webp"}
                     alt="user"
                   />
                 </div>
