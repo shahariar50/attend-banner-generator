@@ -6,7 +6,10 @@ export const POST = async (req: NextRequest) => {
   await connectionToDatabase();
   const { name, batch } = await req.json();
 
-  const existingRecord = await SubmissionData.findOne({ name, batch });
+  const existingRecord = await SubmissionData.findOne({
+    name: name.trim(),
+    batch: batch.trim(),
+  });
 
   if (existingRecord) {
     return NextResponse.json(
@@ -15,7 +18,10 @@ export const POST = async (req: NextRequest) => {
     );
   }
 
-  const formData = new SubmissionData({ name, batch });
+  const formData = new SubmissionData({
+    name: name.trim(),
+    batch: batch.trim(),
+  });
   await formData.save();
 
   return NextResponse.json({ message: "Form data saved successfully" });
