@@ -32,7 +32,7 @@ export default function Home() {
         </div>
         <span className="block w-11/12 h-[2px] rounded-sm bg-white/5 my-4 sm:my-8 mx-auto" />
         <div>
-          <Form onChange={handleChange} />
+          <Form onChange={handleChange} data={formVal} />
         </div>
       </div>
     </div>

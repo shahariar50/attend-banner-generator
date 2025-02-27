@@ -7,9 +7,10 @@ import TextInput from "./TextInput";
 
 type FormProps = {
   onChange: (name: string, val: string) => void;
+  data: { name: string; batch: string };
 };
 
-const Form: FC<FormProps> = ({ onChange }) => {
+const Form: FC<FormProps> = ({ onChange, data }) => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -56,6 +57,15 @@ const Form: FC<FormProps> = ({ onChange }) => {
     }
     axios
       .post("/api/data")
+      .then((res) => {
+        setCount(res.data.value);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    axios
+      .post("/api/submissionData", data)
       .then((res) => {
         setCount(res.data.value);
       })
